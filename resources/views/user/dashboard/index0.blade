@@ -1,0 +1,59 @@
+@extends('layouts.app')
+
+@section('content')
+<article class="content">
+  <div class="card items">
+    
+  </div>
+</article>
+@endsection
+
+{{--
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+      <div class="jumbotron">
+        <h3>Today's attendance</h3>
+        <p><a class="btn btn-primary btn-lg" href="/attendances/day/{{ date_to_url($today) }}" role="button">Go</a></p>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>date</th>
+            <th>state</th>
+            <th>begin</th>
+            <th>end</th>
+            <th>break</th>
+            <th>work</th>
+            <th>edit</th>
+            {{-- <th>update</th> --}}
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($dateList as $dateData)
+          <tr @if ($dateData['is_holiday']) class="danger" @endif>
+            <td>{{ $dateData['date_at'] }}({{ $dateData['dotweek'] }})</td>
+            <td>{{ $dateData['work_state'] ?? '-'}}</td>
+            <td>{{ fmt_time($dateData['begin_time']) ?? '-'}}</td>
+            <td>{{ fmt_time($dateData['end_time'])  ?? '-'}}</td>
+            <td>{{ fmt_time($dateData['break_time'])  ?? '-'}}</td>
+            <td>
+              {{ $dateData['work_time']  ?? '-'}}
+              @if (empty($dateData['work_time']) && !is_null($dateData['fore_work_time']))
+              ({{ $dateData['fore_work_time'] }})
+              @endif
+            </td>
+            <td>
+              <a href="/attendances/day/{{ date_to_url($dateData['date_at']) }}/">edit</a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+--}}

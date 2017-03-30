@@ -1,0 +1,43 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dashboard</div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>month</th>
+              <th>total work time</th>
+              <th>avg work time day</th>
+              <th>total work day count</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($monthSummary as $summary)
+            <tr>
+              <td>{{ date_to_fmt($summary['year_month'], 'Y/m') }}</td>
+              <td>{{ $summary['total_work_time'] ?? '-' }}</td>
+              <td>{{ $summary['avg_work_time_day'] ?? '-'}}</td>
+              <td>{{ $summary['total_work_day_count'] ?? '-'}}</td>
+              <td>
+                <a href="/attendances/month/{{ date_to_url($summary['year_month'], 'Y/m') }}/">detail</a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+        <!--
+        <div class="panel-body">
+        You are logged in!
+      </div>
+    -->
+  </div>
+</div>
+</div>
+</div>
+@endsection

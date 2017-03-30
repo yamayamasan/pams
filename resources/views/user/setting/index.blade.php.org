@@ -1,0 +1,49 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      @include('components.settings')
+    </div>
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dashboard</div>
+
+        <div class="panel-body">
+          <form action="/setting/update/monthly_base_infos" method="POST">
+            {{ csrf_field() }}
+            <div class="form-group">
+              <label for="term_start_day">適用開始月</label>
+              <input type="text" class="form-control" id="term_start_day" placeholder="" name="term_start_day">
+            </div>
+
+            <div class="form-group">
+              <label for="term_end_day">適用終了月</label>
+              <input type="text" class="form-control" id="term_end_day" placeholder="" name="term_end_day">
+            </div>
+
+            <div class="form-group">
+              <label for="base_attend_time">出勤時間</label>
+              <input type="text" class="form-control" id="base_attend_time" placeholder="09:00" name="base_attend_time">
+            </div>
+
+            <div class="form-group">
+              <label for="base_leaving_time">退勤時間</label>
+              <input type="text" class="form-control" id="base_leaving_time" placeholder="18:00" name="base_leaving_time">
+            </div>
+
+            <div class="form-group">
+              <label for="base_break_time">休憩時間</label>
+              <input type="text" class="form-control" id="base_break_time" placeholder="01:00" name="base_break_time">
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

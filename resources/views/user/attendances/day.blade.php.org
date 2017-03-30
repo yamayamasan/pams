@@ -1,0 +1,48 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dashboard</div>
+
+        <div class="panel-body">
+          <form action="{{ $actionUrl }}" method="{{ $method }}">
+            {{ csrf_field() }}
+            <div class="form-group">
+              <label for="date_at">日付</label>
+              <input type="text" class="form-control" id="date_at" placeholder="" name="date_at" value="{{ $attendance['date_at'] ?? ''}}">
+            </div>
+
+            <div class="form-group">
+              <label for="begin_time">出勤時間</label>
+              <input type="time" class="form-control" id="begin_time" placeholder="09:00" name="begin_time" value="{{ isset($attendance['begin_time'])? fmt_time($attendance['begin_time']) : ''}}">
+            </div>
+
+            <div class="form-group">
+              <label for="end_time">退勤時間</label>
+              <input type="time" class="form-control" id="end_time" placeholder="18:00" name="end_time" value="{{ isset($attendance['end_time'])? fmt_time($attendance['end_time']) : ''}}">
+            </div>
+
+            <div class="form-group">
+              <label for="break_time">休憩時間</label>
+              <input type="time" class="form-control" id="break_time" placeholder="01:00" name="break_time" value="{{ isset($attendance['break_time'])? fmt_time($attendance['break_time']) : ''}}">
+            </div>
+
+            <div class="form-group">
+              <label for="note">備考</label>
+              <textarea id="note" name="note" class="form-control" rows="2" placeholder="作業内容など">{{ $attendance['note'] ?? ''}}</textarea>
+            </div>
+
+            @include('components.work_states_selectbox', ['workStates' => $workStates, 'state' => $attendance['work_states_id'] ?? null])
+
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

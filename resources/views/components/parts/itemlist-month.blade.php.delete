@@ -1,0 +1,38 @@
+<ul class="item-list striped">
+
+  <li class="item item-list-header hidden-sm-down">
+    <div class="item-row">
+        <div class="item-col item-col-header item-col-title"><div><span>month</span></div></div>
+        <div class="item-col item-col-header item-col-title"><div><span>total work time</span></div></div>
+        <div class="item-col item-col-header item-col-title"><div><span>avg work time day</span></div></div>
+        <div class="item-col item-col-header item-col-title"><div><span>total work day count</span></div></div>
+        <div class="item-col item-col-header item-col-title"><div><span>action</span></div></div>
+    </div>
+  </li>
+
+  @foreach ($monthSummary as $summary)
+  <li class="item item-list-header hidden-sm-down">
+    <div class="item-row">
+
+        <div class="item-col item-col-header item-col-title">
+          <div><span>{{ date_to_fmt($summary['year_month'], 'Y/m') }}</span></div>
+        </div>
+        <div class="item-col item-col-header item-col-title">
+          <div><span>{{ $summary['total_work_time'] ?? '-' }}</span></div>
+        </div>
+        <div class="item-col item-col-header item-col-title">
+          <div><span>{{ $summary['avg_work_time_day'] ?? '-'}}</span></div>
+        </div>
+        <div class="item-col item-col-header item-col-title">
+          <div><span>{{ $summary['total_work_day_count'] ?? '-'}}</span></div>
+        </div>
+        <div class="item-col item-col-header item-col-title">
+          <div>
+            <a href="/attendances/month/{{ date_to_url($summary['year_month'], 'Y/m') }}/">detail</a>
+          </div>
+        </div>
+
+    </div>
+  </li>
+  @endforeach
+</ul>

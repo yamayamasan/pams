@@ -1,0 +1,26 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      @include('components.settings')
+    </div>
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Month Base Info</div>
+        <a href="/setting/monthly_base_infos/new">create</a>
+        <div class="panel-body">
+          @foreach ($monthBaseInfo as $info)
+          <div class="list-group">
+            <a href="/setting/monthly_base_infos/edit/{{ $info->uuid }}" class="list-group-item">
+              <h4 class="list-group-item-heading">{{ $info->term_start_day }}</h4>
+            </a>
+          </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
